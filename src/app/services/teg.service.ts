@@ -15,4 +15,8 @@ export class TegService {
   public ping(): Observable<string> {
     return this.http.get<string>('http://localhost:8080/teg/ping');
   }
+
+  public hello(): Observable<string> {
+    return this.http.get<string>('http://localhost:8080/teg/hello');
+  }
 }
