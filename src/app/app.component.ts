@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TegService } from './services/teg.service';
 import { Observable } from 'rxjs';
+import { RxStompService } from '@stomp/ng2-stompjs';
+import { Message } from '@stomp/stompjs';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +12,23 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'teg-front';
 
+  public receivedMessages: string[] = [];
   public ping$: Observable<string>;
 
-  constructor(private tegService: TegService) { }
+  constructor(private tegService: TegService, private rxStompService: RxStompService) { }
 
   public ngOnInit() {
     this.ping$ = this.tegService.ping();
     this.ping$.subscribe();
+
+    this.rxStompService.watch('/events/update').subscribe((message: Message) => {
+      this.receivedMessages.push(message.body);
+    });
+  }
+
+  onSendMessage() {
+    const message = `Message generated at ${new Date()}`;
+    this.rxStompService.publish({destination: '/events/play', body: message});
   }
 
 }
