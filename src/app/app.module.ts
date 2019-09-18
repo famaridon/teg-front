@@ -4,17 +4,17 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { StompModule } from './stomp/stomp.module';
+import { RoomViewComponent } from './compoennts/room/room-view/room-view.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RoomViewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    StompModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
