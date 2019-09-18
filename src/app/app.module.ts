@@ -5,10 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StompModule } from './stomp/stomp.module';
+import { ColonyComponent } from './component/colony/colony.component';
+import { LevelComponent } from './component/level/level.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ColonyComponent,
+    LevelComponent
   ],
   imports: [
     BrowserModule,
