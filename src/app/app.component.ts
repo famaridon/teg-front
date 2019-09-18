@@ -15,20 +15,11 @@ export class AppComponent implements OnInit {
   public receivedMessages: string[] = [];
   public ping$: Observable<string>;
 
-  constructor(private tegService: TegService, private rxStompService: RxStompService) { }
+  constructor(private tegService: TegService) { }
 
   public ngOnInit() {
     this.ping$ = this.tegService.ping();
     this.ping$.subscribe();
-
-    this.rxStompService.watch('/events/update').subscribe((message: Message) => {
-      this.receivedMessages.push(message.body);
-    });
-  }
-
-  onSendMessage() {
-    const message = `Message generated at ${new Date()}`;
-    this.rxStompService.publish({destination: '/events/play', body: message});
   }
 
 }
