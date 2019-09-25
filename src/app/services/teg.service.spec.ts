@@ -24,4 +24,23 @@ describe('TegService', () => {
     const service: TegService = TestBed.get(TegService);
     expect(service).toBeTruthy();
   });
+
+  it('can get some rooms', () => {
+
+    const dummyRooms = [
+      { name: 'famaridon', id: '1' },
+      { name: 'quentin' , id: '2'}
+    ];
+
+    const service: TegService = TestBed.get(TegService);
+    service.getRooms().subscribe((rooms) => {
+      expect(rooms.length).toBe(2);
+      expect(rooms).toEqual(dummyRooms);
+      expect(rooms[0].name).toEqual('famaridon');
+    });
+
+    const req = httpMock.expectOne(`http://localhost:8080/teg/rooms`);
+    expect(req.request.method).toBe('GET');
+    req.flush(dummyRooms);
+  });
 });
