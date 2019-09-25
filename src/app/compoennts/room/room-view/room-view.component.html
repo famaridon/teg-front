@@ -1,4 +1,33 @@
 <div class="rooms-view">
-    <h2>Open rooms</h2>
-    <div class="room" *ngFor="let room of rooms;">{{room.name}}</div>
+  <h2>Open rooms <button type="button" class="btn btn-primary" (click)="open(content)">Create <i
+        class="oi oi-plus"></i></button></h2>
+  <div class="row">
+    <div class="card room col-sm-3" style="width: 18rem;" *ngFor="let room of rooms;">
+      <div class="card-body">
+        <h5 class="card-title">{{room.name}}</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <a [routerLink]="['/room/', room.id]">Join</a>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="name">Room name</label>
+      <div class="input-group">
+        <input type="text" id="name" [(ngModel)]="newRoomName" class="form-control">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close('create')">Create and join</button>
+    <button type="button" class="btn btn-link" (click)="modal.close('cancel')">Cancel</button>
+  </div>
+</ng-template>

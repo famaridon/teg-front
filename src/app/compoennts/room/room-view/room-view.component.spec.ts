@@ -3,6 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RoomViewComponent } from './room-view.component';
 import { TegService } from 'src/app/services/teg.service';
 import { Observable, of } from 'rxjs';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { RoomComponent } from 'src/app/components/room/room/room.component';
 
 const dummyRooms = [
   { name: 'famaridon', id: '1' },
@@ -23,7 +26,8 @@ describe('RoomViewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [{provide: TegService, useClass: MockTegService}],
-      declarations: [ RoomViewComponent ]
+      declarations: [ RoomViewComponent, RoomComponent ],
+      imports: [AppRoutingModule]
     })
     .compileComponents();
     tegServiceMock = TestBed.get(TegService);

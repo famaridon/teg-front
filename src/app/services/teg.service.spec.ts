@@ -2,6 +2,7 @@ import { TestBed, async, getTestBed } from '@angular/core/testing';
 
 import { TegService } from './teg.service';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { Room } from './beans/room';
 
 describe('TegService', () => {
 
@@ -43,4 +44,20 @@ describe('TegService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(dummyRooms);
   });
+
+  it('can create room', () => {
+
+    const service: TegService = TestBed.get(TegService);
+    const room = new Room();
+    room.name = 'Creation test';
+    service.createRoom(room).subscribe((createdRoom) => {
+      expect(createdRoom.id).toBeTruthy();
+      expect(createdRoom.name).toEqual(room.name);
+    });
+
+    const req = httpMock.expectOne(`http://localhost:8080/teg/rooms`);
+    expect(req.request.method).toBe('POST');
+    req.flush({name: 'Creation test', id: 1});
+  });
+
 });
