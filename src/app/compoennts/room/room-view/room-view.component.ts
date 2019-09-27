@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/services/beans/room';
 import { TegService } from 'src/app/services/teg.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-room-view',
@@ -16,8 +17,12 @@ export class RoomViewComponent implements OnInit {
   constructor(private tegService: TegService, private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.tegService.getRooms().subscribe((rooms) => {
+    this.tegService.getRoomsEvents().pipe(retry())
+    .subscribe((rooms) => {
       this.rooms = rooms;
+    },
+    (err) => {
+      console.log(err);
     });
   }
 
@@ -33,6 +38,12 @@ export class RoomViewComponent implements OnInit {
           console.dir(room);
         });
       });
+  }
+
+  public join(room: Room) {
+    this.tegService.joinRoom(room).subscribe((player) => {
+      console.log(`I'm player ${player.id}`);
+    });
   }
 
 }

@@ -2,14 +2,19 @@
   <h2>Open rooms <button type="button" class="btn btn-primary" (click)="open(content)">Create <i
         class="oi oi-plus"></i></button></h2>
   <div class="row">
-    <div class="card room col-sm-3" style="width: 18rem;" *ngFor="let room of rooms;">
+    <div class="col col-sm-3" *ngFor="let room of rooms;">
+    <div class="card room " >
       <div class="card-body">
         <h5 class="card-title">{{room.name}}</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-        <a [routerLink]="['/room/', room.id]">Join</a>
+        <div class="card-text">
+          <ul class="list-inline">
+            <li class="list-inline-item" *ngFor='let player of room.players'>{{player.name}}</li>
+          </ul>
+        </div>
+        <button class="btn btn-primary" (click)="join(room);">Join</button>
       </div>
     </div>
+  </div>
   </div>
 </div>
 
@@ -19,10 +24,10 @@
     <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
   </div>
   <div class="modal-body">
-    <div class="form-group">
+    <div class="form-group" (keyup.enter)="modal.close('create')">
       <label for="name">Room name</label>
       <div class="input-group">
-        <input type="text" id="name" [(ngModel)]="newRoomName" class="form-control">
+        <input type="text" id="name" [(ngModel)]="newRoomName"  class="form-control">
       </div>
     </div>
   </div>

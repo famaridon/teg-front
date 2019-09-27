@@ -12,14 +12,9 @@ import { Message } from '@stomp/stompjs';
 export class AppComponent implements OnInit {
   title = 'teg-front';
 
-  public receivedMessages: string[] = [];
-  public ping$: Observable<string>;
-
-  constructor(private tegService: TegService) { }
+  constructor() { }
 
   public ngOnInit() {
-    this.ping$ = this.tegService.ping();
-    this.ping$.subscribe();
   }
 
 }
