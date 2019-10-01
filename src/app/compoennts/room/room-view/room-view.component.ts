@@ -17,7 +17,7 @@ export class RoomViewComponent implements OnInit {
   constructor(private tegService: TegService, private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.tegService.getRoomsEvents().pipe(retry())
+    this.tegService.watchRoomsEvents().pipe(retry())
     .subscribe((rooms) => {
       this.rooms = rooms;
     },

@@ -3,6 +3,8 @@ import { TestBed, async, getTestBed } from '@angular/core/testing';
 import { TegService } from './teg.service';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { Room, Player } from './beans/room';
+import { SseClientService, SseEvent, SseClientServiceMock, SseMessageEvent } from './sse-client.service';
+import { Observable, Subject } from 'rxjs';
 
 const backend = 'http://vv0129:8080';
 
@@ -11,16 +13,19 @@ describe('TegService', () => {
 
   let injector: TestBed;
   let httpMock: HttpTestingController;
+  let sseClientServiceMock: SseClientServiceMock;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule
       ],
+      providers: [{provide: SseClientService, useClass: SseClientServiceMock}],
       declarations: [],
     }).compileComponents();
     injector = getTestBed();
     httpMock = injector.get(HttpTestingController);
+    sseClientServiceMock = injector.get(SseClientService);
   }));
 
   it('should be created', () => {
@@ -62,15 +67,33 @@ describe('TegService', () => {
 
     const service: TegService = TestBed.get(TegService);
     const room = new Room();
-    room.name = 'Creation test';
+    room.name = 'test';
     service.createRoom(room).subscribe((createdRoom) => {
       expect(createdRoom.id).toBeTruthy();
       expect(createdRoom.name).toEqual(room.name);
     });
 
-    const req = httpMock.expectOne(`http://localhost:8080/teg/rooms`);
+    const req = httpMock.expectOne(`${backend}/teg/room?roomName=${room.name}`);
     expect(req.request.method).toBe('POST');
-    req.flush({name: 'Creation test', id: 1});
+    req.flush({name: 'test', id: 1});
+  });
+
+  it('wtach rooms list', () => {
+    const dummyEvents: Room[] = [];
+    dummyEvents[0] = new Room();
+    dummyEvents[1] = new Room();
+
+    const service: TegService = TestBed.get(TegService);
+    const room = new Room();
+    room.name = 'Creation test';
+    service.watchRoomsEvents().subscribe((rooms) => {
+      expect(rooms).toBeTruthy();
+      expect(rooms.length).toBe(2);
+    });
+
+    const req = sseClientServiceMock.expectOne(`${backend}/teg/rooms/events`);
+    expect(req).toBeTruthy();
+    req.next(new SseMessageEvent<any>(sseClientServiceMock.createMockEvent(dummyEvents)));
   });
 
 });

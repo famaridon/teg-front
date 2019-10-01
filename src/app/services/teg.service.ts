@@ -28,7 +28,7 @@ export class TegService {
     return this.http.post<Room>(`${this.backend}/teg/room?roomName=${room.name}`, room);
   }
 
-  public getRoomsEvents(): Observable<Array<Room>> {
+  public watchRoomsEvents(): Observable<Array<Room>> {
     return this.sse.watch<Array<Room>>(`${this.backend}/teg/rooms/events`)
       .pipe(filter(event => event instanceof SseMessageEvent))
       .pipe(map(messageEvent => messageEvent.getData()));
