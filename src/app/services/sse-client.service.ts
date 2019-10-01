@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { RxStomp } from '@stomp/rx-stomp';
 
 export abstract class SseEvent<M> {
 

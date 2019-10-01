@@ -1,10 +1,7 @@
-export class Room {
-    public id: string;
-    public name: string;
-    public players: Player[];
-}
+import { Player } from '.';
 
-export class Player {
+export class Room {
   public id: string;
   public name: string;
+  public players: Player[];
 }
