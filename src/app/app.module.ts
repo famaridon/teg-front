@@ -9,13 +9,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RoomComponent } from './components/room/room/room.component';
 import { FormsModule } from '@angular/forms';
 import { RoomCardComponent } from './components/room/room-card/room-card.component';
+import { RoomEditComponent } from './components/room/room-edit/room-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoomListComponent,
     RoomComponent,
-    RoomCardComponent
+    RoomCardComponent,
+    RoomEditComponent
   ],
   imports: [
     NgbModule,

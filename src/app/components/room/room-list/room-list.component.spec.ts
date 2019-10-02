@@ -11,7 +11,7 @@ import { RoomCardComponent } from '../room-card/room-card.component';
 
 const dummyRooms = [
   { name: 'famaridon', id: '1' },
-  { name: 'quentin' , id: '2'}
+  { name: 'quentin', id: '2' }
 ];
 
 class MockTegService {
@@ -27,11 +27,11 @@ describe('RoomListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [{provide: TegService, useClass: MockTegService}],
-      declarations: [ RoomListComponent, RoomComponent, RoomCardComponent ],
+      providers: [{ provide: TegService, useClass: MockTegService }],
+      declarations: [RoomListComponent, RoomComponent, RoomCardComponent],
       imports: [RouterTestingModule, FormsModule]
     })
-    .compileComponents();
+      .compileComponents();
     tegServiceMock = TestBed.get(TegService);
   }));
 
