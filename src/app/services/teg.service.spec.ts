@@ -2,9 +2,8 @@ import { TestBed, async, getTestBed } from '@angular/core/testing';
 
 import { TegService } from './teg.service';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
-import { Room, Player } from './beans/room';
+import { Room, Player } from './beans';
 import { SseClientService, SseEvent, SseClientServiceMock, SseMessageEvent } from './sse-client.service';
-import { Observable, Subject } from 'rxjs';
 
 const backend = 'http://vv0129:8080';
 

@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RoomComponent } from 'src/app/components/room/room/room.component';
+import { FormsModule } from '@angular/forms';
 
 const dummyRooms = [
   { name: 'famaridon', id: '1' },
@@ -13,7 +14,7 @@ const dummyRooms = [
 ];
 
 class MockTegService {
-  getRooms() {
+  watchRoomsEvents() {
     return of(dummyRooms);
   }
 }
@@ -27,7 +28,7 @@ describe('RoomViewComponent', () => {
     TestBed.configureTestingModule({
       providers: [{provide: TegService, useClass: MockTegService}],
       declarations: [ RoomViewComponent, RoomComponent ],
-      imports: [AppRoutingModule]
+      imports: [AppRoutingModule, FormsModule]
     })
     .compileComponents();
     tegServiceMock = TestBed.get(TegService);
