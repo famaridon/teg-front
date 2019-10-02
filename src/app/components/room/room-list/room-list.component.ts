@@ -40,10 +40,4 @@ export class RoomListComponent implements OnInit {
       });
   }
 
-  public join(room: Room) {
-    this.tegService.joinRoom(room).subscribe((player) => {
-      console.log(`I'm player ${player.id}`);
-    });
-  }
-
 }

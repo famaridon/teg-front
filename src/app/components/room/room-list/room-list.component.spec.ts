@@ -1,24 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RoomListComponent } from './room-list.component';
-import { TegService } from 'src/app/services/teg.service';
+import { TegService, TegServiceMock } from 'src/app/services/teg.service';
 import { of } from 'rxjs';
 import { RoomComponent } from 'src/app/components/room/room/room.component';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { RoomCardComponent } from '../room-card/room-card.component';
-
-const dummyRooms = [
-  { name: 'famaridon', id: '1' },
-  { name: 'quentin', id: '2' }
-];
-
-class MockTegService {
-  watchRoomsEvents() {
-    return of(dummyRooms);
-  }
-}
 
 describe('RoomListComponent', () => {
   let component: RoomListComponent;
@@ -27,7 +16,7 @@ describe('RoomListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: TegService, useClass: MockTegService }],
+      providers: [{ provide: TegService, useClass: TegServiceMock }],
       declarations: [RoomListComponent, RoomComponent, RoomCardComponent],
       imports: [RouterTestingModule, FormsModule]
     })

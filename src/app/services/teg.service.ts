@@ -36,3 +36,19 @@ export class TegService {
 
 
 }
+
+
+export class TegServiceMock extends TegService {
+  private dummyRooms = [
+    { name: 'famaridon', id: '1', players: [] },
+    { name: 'quentin', id: '2', players: [] }
+  ];
+
+  constructor() {
+    super(null, null);
+  }
+
+  public watchRoomsEvents(): Observable<Array<Room>> {
+    return of(this.dummyRooms);
+  }
+}
