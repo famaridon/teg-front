@@ -5,11 +5,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { retry } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-room-view',
-  templateUrl: './room-view.component.html',
-  styleUrls: ['./room-view.component.scss']
+  selector: 'app-room-list',
+  templateUrl: './room-list.component.html',
+  styleUrls: ['./room-list.component.scss']
 })
-export class RoomViewComponent implements OnInit {
+export class RoomListComponent implements OnInit {
 
   public rooms: Array<Room>;
   public newRoomName: string;

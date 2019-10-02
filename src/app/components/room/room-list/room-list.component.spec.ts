@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoomViewComponent } from './room-view.component';
+import { RoomListComponent } from './room-list.component';
 import { TegService } from 'src/app/services/teg.service';
 import { Observable, of } from 'rxjs';
 import { RouterModule } from '@angular/router';
@@ -20,14 +20,14 @@ class MockTegService {
 }
 
 describe('RoomViewComponent', () => {
-  let component: RoomViewComponent;
+  let component: RoomListComponent;
   let tegServiceMock: TegService;
-  let fixture: ComponentFixture<RoomViewComponent>;
+  let fixture: ComponentFixture<RoomListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [{provide: TegService, useClass: MockTegService}],
-      declarations: [ RoomViewComponent, RoomComponent ],
+      declarations: [ RoomListComponent, RoomComponent ],
       imports: [AppRoutingModule, FormsModule]
     })
     .compileComponents();
@@ -35,7 +35,7 @@ describe('RoomViewComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RoomViewComponent);
+    fixture = TestBed.createComponent(RoomListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
