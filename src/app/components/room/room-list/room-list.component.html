@@ -1,20 +1,10 @@
 <div class="rooms-view">
-  <h2>Open rooms <button type="button" class="btn btn-primary" (click)="open(content)">Create <i
+  <h2>Open rooms <button type="button" class="btn btn-primary create" (click)="open(content)">Create <i
         class="oi oi-plus"></i></button></h2>
   <div class="row">
-    <div class="col col-sm-3" *ngFor="let room of rooms;">
-    <div class="card room " >
-      <div class="card-body">
-        <h5 class="card-title">{{room.name}}</h5>
-        <div class="card-text">
-          <ul class="list-inline">
-            <li class="list-inline-item" *ngFor='let player of room.players'>{{player.name}}</li>
-          </ul>
-        </div>
-        <button class="btn btn-primary" (click)="join(room);">Join</button>
-      </div>
+    <div class="col col-sm-3 room" *ngFor="let room of rooms;">
+      <app-room-card [room]="room"></app-room-card>
     </div>
-  </div>
   </div>
 </div>
 
@@ -27,7 +17,7 @@
     <div class="form-group" (keyup.enter)="modal.close('create')">
       <label for="name">Room name</label>
       <div class="input-group">
-        <input type="text" id="name" [(ngModel)]="newRoomName"  class="form-control">
+        <input type="text" id="name" [(ngModel)]="newRoomName" class="form-control">
       </div>
     </div>
   </div>

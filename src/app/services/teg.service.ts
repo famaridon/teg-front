@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { Room, Player } from './beans';
 import { SseClientService, SseMessageEvent } from './sse-client.service';
 import { filter, map } from 'rxjs/operators';

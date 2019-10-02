@@ -8,12 +8,14 @@ import { RoomListComponent } from './components/room/room-list/room-list.compone
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RoomComponent } from './components/room/room/room.component';
 import { FormsModule } from '@angular/forms';
+import { RoomCardComponent } from './components/room/room-card/room-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoomListComponent,
-    RoomComponent
+    RoomComponent,
+    RoomCardComponent
   ],
   imports: [
     NgbModule,

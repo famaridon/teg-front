@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{room.name}}</h5>
+    <div class="card-text">
+      <ul class="list-inline">
+        <li class="list-inline-item" *ngFor='let player of room.players'>{{player.name}}</li>
+      </ul>
+    </div>
+    <button class="btn btn-primary" (click)="join(room);">Join</button>
+  </div>
+</div>
